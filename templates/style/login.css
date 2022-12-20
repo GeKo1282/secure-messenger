@@ -1,0 +1,101 @@
+* {
+    user-select: none;
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1200px;
+    background: #333;
+}
+
+#form {
+    width: 300px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#form > div {
+    flex: 1;
+    width: 100%;
+    background: #ddd;
+    border-radius: 15px;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.button {
+    width: 100px !important;
+    justify-content: center !important;
+    border: #3CAF13FF 3px solid;
+}
+
+.field > div:first-child {
+    cursor: text;
+    padding: 0 10px;
+    box-sizing: border-box;
+    overflow-x: scroll;
+    white-space: nowrap;
+    flex-grow: 1;
+}
+
+.field > div:first-child::-webkit-scrollbar {
+    display: none;
+}
+
+.field > div:first-child > span {
+    outline: transparent;
+    width: 100%;
+    font-size: 20px;
+}
+
+.field {
+    border: #3CAF13FF 3px solid;
+}
+
+#password > div:first-child {
+    flex-direction: row;
+}
+
+#password > div:first-child > span {
+    flex-grow: 1;
+}
+
+#password > div:not(:first-child) {
+    height: 80%;
+    margin: 0 10px;
+}
+
+#password > div:not(:first-child) > svg {
+    height: 100%;
+    fill: #444;
+}
+
+#password > div:not(:first-child) > svg:hover {
+    height: 100%;
+    fill: #333;
+}
+
+#eye-stroke, #eye {
+    display: none;
+}
+
+
+@font-face {
+  font-family: 'password';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://jsbin-user-assets.s3.amazonaws.com/rafaelcastrocouto/password.ttf);
+}
