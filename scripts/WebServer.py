@@ -4,7 +4,7 @@ from threading import Thread
 from flask import Flask, redirect, render_template, session, send_from_directory, request, send_file
 
 print(os.path.abspath("./templates/"))
-app = Flask(__name__, template_folder=os.path.abspath("./templates/"))
+app = Flask(__name__, template_folder=os.path.abspath("./templates/"), static_folder=os.path.abspath("./static/"))
 app.config["SESSION_TYPE"] = "filesystem"
 flask_session.Session(app)
 
@@ -23,6 +23,20 @@ class HTTP_Server:
         if "user" in session and session['user']:
             return redirect("/")
         return render_template("login.html")
+
+    @staticmethod
+    @app.get("/register")
+    async def register():
+        if "user" in session and session['user']:
+            return redirect("/login")
+        return render_template("register.html")
+
+    @staticmethod
+    @app.get("/forgotten-password")
+    async def forgot_password():
+        if "user" in session and session['user']:
+            return redirect("/login")
+        return render_template("forgot_password.html")
 
     @staticmethod
     @app.get("/script/<name>")

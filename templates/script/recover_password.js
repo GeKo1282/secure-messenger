@@ -1,12 +1,10 @@
 addLoadEvent(() => {
     const mail_regex = new RegExp("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
     const phone_regex = new RegExp("^[0-9]{9,10}$");
-    const pass_regex = new RegExp("^[a-zA-Z0-9.!@#$%&*]{8,64}$");
 
     let fields = document.getElementsByClassName("field");
     let labels = document.getElementsByName("label");
     let mail_field = document.getElementById("email-field");
-    let password_field = document.getElementById("password-field");
 
     for (let label of labels) {
         label.addEventListener("click", (e)=> {
@@ -29,17 +27,6 @@ addLoadEvent(() => {
 
         if (!mail_field.className.includes("incorrect")) {
             mail_field.className += " incorrect";
-        }
-    });
-
-    password_field.addEventListener("focusout", ()=> {
-        if (pass_regex.test(password_field.value) && !password_field.className.includes("filled")) {
-            password_field.className += " filled";
-            return;
-        }
-
-        if (!password_field.className.includes("incorrect")) {
-            password_field.className += " incorrect";
         }
     });
 });

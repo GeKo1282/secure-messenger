@@ -1,0 +1,12 @@
+:root {
+    --background: #262626;
+
+    --login-box-bg: #303030;
+
+    --text-dark: #7b7b7b;
+    --text-bright: #b8b8b8;
+    --text-dark-hover: #b5b5b5;
+
+    --forgot-color: #b83232;
+    --register-color: #4fad15;
+}
