@@ -9,4 +9,9 @@
 
     --forgot-color: #b83232;
     --register-color: #4fad15;
+
+    --text-red: rgba(229, 102, 63, 0.5);
+
+    --red-button: rgba(231, 63, 63, 0.2);
+    --green-button: rgba(99, 231, 63, 0.2);
 }

@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@1.0.0/dist/forge.min.js"></script>
+    <script src="script/sha512.js"></script>
     <script src="script/funcs.js"></script>
+    <script src="script/rsa.js"></script>
     <script src="script/register.js" defer></script>
     <script src="script/logo.js" defer></script>
     <link rel="stylesheet" href="style/root.css">
@@ -14,13 +17,13 @@
         <div id="logo"></div>
     </div>
     <div id="content">
-        <div id="login-box">
+        <div id="login-box" class="box">
             <div id="back" onclick="window.location.replace('/login')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/> </svg>
               Back</div>
             <div id="header">
-                <p>Welcome in our community!</p>
-                <p>We're glad you're joining us!</p>
+                <p class="header">Welcome in our community!</p>
+                <p class="sub">We're glad you're joining us!</p>
             </div>
             <label for="email-field" id="email-label" class="label">EMAIL / PHONE NUMBER (9-10 DIGITS)</label><input type="text" id="email-field" class="field">
             <label for="nick-field" id="nick-label" class="label">NICKNAME (4-64 CHARACTERS)</label><input type="text" id="nick-field" class="field">
@@ -75,7 +78,11 @@
                 <div class="blue" id="blue-bar"></div>
             </div>
             <label for="repeat-password-field" id="repeat-password-label" class="label">REPEAT PASSWORD</label><input type="password" id="repeat-password-field" class="field">
-            <div id="register-button" onclick="" class="button">Register!</div>
+            <div id="register-button" onclick="send_req()" class="button">Register!</div>
+        </div>
+        <div id="response-box" class="box" style="display: none;">
+            <p class="header"></p>
+            <p class="sub"></p>
         </div>
     </div>
 </body>

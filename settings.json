@@ -1,0 +1,7 @@
+{
+  "LOGGING_LEVEL": "DEBUG",
+  "DATETIME_FORMAT": "%d-%m-%Y %H:%M:%S",
+  "DIRS": ["data"],
+  "USERS_DATABASE_PATH": "./data/users.db",
+  "HOSTNAME": "127.0.0.1"
+}

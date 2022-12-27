@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Log In</title>
+    <script src="https://cdn.jsdelivr.net/npm/node-forge@1.0.0/dist/forge.min.js"></script>
     <script src="script/funcs.js"></script>
+    <script src="script/sha512.js"></script>
+    <script src="script/rsa.js"></script>
     <script src="script/login.js" defer></script>
     <script src="script/logo.js" defer></script>
     <link rel="stylesheet" href="style/root.css">
@@ -14,14 +17,12 @@
         <div id="logo"></div>
     </div>
     <div id="content">
-        <div id="login-box">
-            <div id="header">
-                <p>Welcome back!</p>
-                <p>It's good to see you again!</p>
-            </div>
-            <label for="email-field" id="email-label" class="label">EMAIL / PHONE NUMBER</label><input type="text" id="email-field" class="field">
-            <label for="password-field" id="password-label" class="label">PASSWORD</label><input type="password" id="password-field" class="field">
-            <div id="login-button" onclick="window.location.replace('/app')" class="button">Log in!</div>
+        <div id="login-box" class="box">
+            <p class="header">Welcome back!</p>
+            <p class="sub">It's good to see you again!</p>
+            <label for="email-field" id="email-label" class="label">EMAIL / PHONE NUMBER <span id="incorrect-email"></span></label><input type="text" id="email-field" class="field" value="{{login}}">
+            <label for="password-field" id="password-label" class="label">PASSWORD <span id="incorrect-password"></span></label><input type="password" id="password-field" class="field">
+            <div id="login-button" onclick="log_in()" class="button">Log in!</div>
             <p id="forgotten-password" onclick="window.location.replace('/forgotten-password')">Forgot password?</p>
             <p id="register" onclick="window.location.replace('/register')">Register an account</p>
         </div>

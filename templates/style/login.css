@@ -37,7 +37,7 @@ body {
     justify-content: center;
 }
 
-#login-box {
+.box {
     width: 500px;
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@ body {
     box-shadow: 0 0 4px rgba(0, 0, 0, .3);
 }
 
-#login-box > * {
+.box > * {
     width: 100%;
 }
 
@@ -75,7 +75,7 @@ body {
     aspect-ratio: 1 / 1;
 }
 
-#header > p {
+.sub, .header {
     color: var(--text-dark);
     text-align: center;
     font-size: 20px;
@@ -83,10 +83,14 @@ body {
     margin-bottom: 30px;
 }
 
-#header > p:first-child {
+.header {
     color: var(--text-bright);
     font-size: 32px;
     margin-bottom: 5px;
+}
+
+.header > a, .sub > a {
+    color: var(--text-bright);
 }
 
 .label {
@@ -141,14 +145,24 @@ body {
     user-select: none;
 }
 
+#response-box > .button:first-child,
+#main-box > .button:first-child{
+    margin-top: 0;
+}
+
+#main-box > .button:not(:first-child),
+#response-box > .button:not(:first-child) {
+    margin-top: 20px;
+}
+
 #login-box:not(:has(.field:not(.filled))) > .button {
-    background: rgba(99, 231, 63, 0.2);
+    background: var(--green-button);
     animation: shake-vertical 300ms linear;
     cursor: pointer;
 }
 
 #login-box:has(.field.incorrect) > .button {
-    background: rgba(231, 63, 63, 0.2);
+    background: var(--red-button);
     animation: shake 300ms linear;
     cursor: not-allowed;
 }
@@ -204,6 +218,11 @@ body {
 #password-check > div:not(.correct) > .x {
     display: block;
     transform: translateY(-1px);
+}
+
+#incorrect-email, #incorrect-password {
+    color: var(--text-red);
+    margin-left: 15px;
 }
 
 #password-check > div:not(.correct) {

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verification</title>
+    <script src="/script/funcs.js"></script>
+    <script src="/script/verification.js"></script>
+    <link rel="stylesheet" href="/style/root.css">
+    <link rel="stylesheet" href="/style/login.css">
+</head>
+<body>
+  <div id="content">
+        <div id="main-box" class="box">
+            <p class="header">{{header}}</p>
+            <p class="sub">{{sub}}</p>
+
+            {% if exists %}
+            <div id="login-button" onclick="login_redirect('{{email}}')" class="button" style="background: var(--green-button);">Return to login page</div>
+            {% endif %}
+
+            {% if not verified and exists%}
+            <div id="request-button" onclick="request_email('{{email}}')" class="button" style="background: var(--red-button);">Request another verification e-mail</div>
+            {% endif %}
+
+            {% if not exists %}
+            <div id="register-button" onclick="window.location.replace('/register')" class="button" style="background: var(--red-button);">Go to registration page</div>
+            {% endif %}
+        </div>
+        <div id="response-box" class="box" style="display: none;">
+            <p class="header"></p>
+            <p class="sub"></p>
+        </div>
+    </div>
+</body>
+</html>

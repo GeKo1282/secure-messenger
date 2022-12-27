@@ -20,3 +20,21 @@ function addLoadEvent(func) {
 		}
 	}
 }
+
+function range(start, end, step=1) {
+	let out = [];
+	let i = start;
+	while (i + step <= end + 1) {
+		out.push(i);
+		i += step;
+	}
+
+	if (out[out.length-1] !== end) {
+		out.push(end);
+	}
+
+	if (out[0] !== 0) {
+		out = [0].concat(out)
+	}
+	return out;
+}

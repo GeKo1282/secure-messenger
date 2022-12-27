@@ -198,3 +198,91 @@ addLoadEvent(() => {
         refresh_password_fields();
     });
 });
+
+async function send_req() {
+    let correct = document.getElementById("email-field").className.includes("filled") &&
+        document.getElementById("nick-field").className.includes("filled") &&
+        document.getElementById("password-field").className.includes("filled") &&
+        document.getElementById("repeat-password-field").className.includes("filled");
+
+    if (!correct) return;
+
+    let email = document.getElementById("email-field").value;
+    let nick = document.getElementById("nick-field").value;
+    let passwd = document.getElementById("password-field").value;
+
+    let response_box = document.getElementById("response-box");
+    let login_box = document.getElementById("login-box");
+    let header = response_box.querySelector(".header");
+    let sub = response_box.querySelector(".sub");
+
+    let response = await fetch("/resource/encryption-data", {method: "GET"});
+    let data = JSON.parse(await response.text());
+
+    let enc = Cipher.static_encrypt(JSON.stringify({
+        email: email,
+        username: nick,
+        password: passwd
+    }), data['key'], data['separator'], data['max_message_length']);
+
+    response = JSON.parse(await (await fetch("/register", {method: "POST", body: enc})).text());
+    header.innerHTML = response['header'];
+    sub.innerHTML = response['sub'];
+
+    login_box.style.display = "none";
+    response_box.style.display = "";
+
+    if (Object.keys(response).includes('buttons')) {
+        for (let button of response.buttons){
+            let btn = document.createElement("div");
+            btn.className = "button";
+            btn.innerHTML = button.content;
+            btn.addEventListener("click", () => {
+                eval(button.onclick);
+            });
+
+            if (Object.keys(button).includes("style")) {
+                btn.setAttribute("style", button.style);
+            }
+
+            response_box.appendChild(btn);
+        }
+
+    }
+}
+
+async function request_another(email) {
+    let response = JSON.parse(await (await fetch(`/request-verification`, {
+        method: "POST",
+        body: JSON.stringify({
+            email: email
+        })
+    })).text())
+
+    let header = document.getElementById("response-box").querySelector(".header")[0];
+    let sub = document.getElementById("response-box").querySelector(".sub")[0];
+
+    header.innerHTML = response['header'];
+    sub.innerHTML = response['sub'];
+
+    if (Object.keys(response).includes('buttons')) {
+        let response_box = document.getElementById("response-box");
+        for (let button of response.buttons){
+            let btn = document.createElement("div");
+            btn.className = "button";
+            btn.innerHTML = button.content;
+            btn.addEventListener("click", () => {
+                eval(button.onclick);
+            });
+
+            if (Object.keys(button).includes("style")) {
+                btn.setAttribute("style", button.style);
+            }
+
+            response_box.appendChild(btn);
+        }
+    }
+
+    document.getElementById('login-box').style.display = "none";
+    document.getElementById('response-box').style.display = "";
+}
